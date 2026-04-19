@@ -1,0 +1,239 @@
+You are a senior full-stack engineer, product designer, and system architect.
+
+Build a production-ready web application similar to Amazon Kindle, where users can access and read PDF books through a subscription model.
+
+## 🎯 PRODUCT GOAL
+
+Create a modern, fast, mobile-friendly web app where:
+
+* Users login via OTP (no password)
+* Users subscribe to access content
+* Users can read PDFs in a smooth Kindle-like reader
+
+---
+
+## 🔐 AUTHENTICATION SYSTEM (IMPORTANT)
+
+* ONLY OTP-based login (no passwords at all)
+* Login methods:
+
+  * Mobile number (primary)
+  * Email (optional)
+
+### Flow:
+
+1. User enters mobile/email
+2. OTP is sent (use mock or service like Firebase/Twilio)
+3. User enters OTP
+4. JWT/session created
+5. User logged in
+
+### Requirements:
+
+* Secure OTP verification
+* Rate limiting
+* Token-based authentication (JWT)
+* Auto-login persistence
+
+---
+
+## 💳 SUBSCRIPTION SYSTEM
+
+* Free tier (limited access)
+* Paid subscription (monthly/yearly)
+
+### Features:
+
+* Payment integration (Stripe / Razorpay)
+* Subscription validation middleware
+* Content gating (only subscribed users access full PDFs)
+
+---
+
+## 📚 CONTENT SYSTEM (PDF LIBRARY)
+
+* Admin can upload PDFs
+* Metadata:
+
+  * Title
+  * Author
+  * Category
+  * Thumbnail
+  * Description
+
+### Storage:
+
+* Use AWS S3 / Firebase Storage
+
+---
+
+## 📖 PDF READER (VERY IMPORTANT - KINDLE STYLE)
+
+Build a smooth reader experience:
+
+### Features:
+
+* Lazy loading pages
+* Smooth scrolling / page flip mode
+* Zoom in/out
+* Dark mode / Light mode
+* Resume from last page
+* Bookmark pages
+* Highlight text (optional advanced)
+* Table of contents (if possible)
+
+Use:
+
+* PDF.js or React PDF Viewer
+
+---
+
+## 🎨 UI/UX DESIGN (MODERN & PREMIUM)
+
+Design should feel like:
+
+* Netflix + Kindle hybrid
+
+### First Screen:
+
+* Clean login screen
+* Mobile number/email input
+* OTP screen
+* Minimal, elegant UI
+
+### After Login:
+
+* Home dashboard:
+
+  * Featured books
+  * Categories
+  * Continue reading section
+  * Recently added
+
+### Design Style:
+
+* Soft shadows
+* Rounded cards
+* Smooth animations
+* Dark mode default
+* Premium typography
+
+---
+
+## 🧭 NAVIGATION
+
+* Bottom navigation (mobile)
+* Sidebar (desktop)
+
+Tabs:
+
+* Home
+* Library
+* Categories
+* Profile
+
+---
+
+## 👤 USER FEATURES
+
+* Profile page
+* Subscription status
+* Reading history
+* Saved bookmarks
+
+---
+
+## 🛠️ TECH STACK (RECOMMENDED)
+
+Frontend:
+
+* Next.js (React)
+* Tailwind CSS
+* Framer Motion
+
+Backend:
+
+* Node.js / Express OR Next.js API routes
+
+Database:
+
+* PostgreSQL OR MongoDB
+
+Auth:
+
+* Firebase Auth OR custom OTP system
+
+Storage:
+
+* AWS S3
+
+Payments:
+
+* Stripe / Razorpay
+
+---
+
+## ⚡ PERFORMANCE
+
+* Fast load times
+* CDN for PDFs
+* Lazy loading everywhere
+* Mobile-first design
+
+---
+
+## 🔒 SECURITY
+
+* Secure APIs
+* JWT validation
+* Protect PDF URLs (signed URLs)
+* Prevent unauthorized downloads
+
+---
+
+## 🧑‍💼 ADMIN PANEL
+
+* Upload PDFs
+* Manage users
+* Manage subscriptions
+* Analytics dashboard
+
+---
+
+## 📦 DELIVERABLES
+
+1. Full project structure
+2. Frontend + Backend code
+3. Database schema
+4. API routes
+5. Deployment steps
+6. Environment variables setup
+
+---
+
+## 🚀 BONUS (if possible)
+
+* Offline reading (PWA)
+* AI recommendations
+* Notes & highlights sync
+
+---
+
+## 🧠 IMPORTANT
+
+* Write clean, scalable, production-level code
+* Follow best practices
+* Use reusable components
+* Keep UI extremely modern and premium
+
+---
+
+Now start building step by step:
+
+1. Project setup
+2. Authentication system
+3. UI screens
+4. PDF reader
+5. Subscription system
+6. Admin panel
+7. Deployment guide

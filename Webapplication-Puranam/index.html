@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Puranam — Sacred Wisdom of the Ages</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{
+  --bg:#07050f;--bg2:#0d0920;--bg3:#120d2a;--bg4:#181030;
+  --gold:#c9940e;--gold2:#f0c040;--gold3:rgba(201,148,14,.15);
+  --saffron:#e8621a;--saffron2:#ffaa55;
+  --cream:#f0e8d8;--text:#d8cfc0;--muted:#7a6e60;
+  --card:rgba(255,255,255,.04);--cb:rgba(201,148,14,.18);
+  --glass:rgba(7,5,15,.85);
+  --r:16px;--rl:24px;
+  --sh:0 24px 64px rgba(0,0,0,.55);
+  --shg:0 0 32px rgba(201,148,14,.18);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;overflow-x:hidden}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+img{display:block}
+
+/* ── MUSIC BAR ── */
+#music-bar{
+  position:fixed;top:0;left:0;right:0;z-index:1000;height:44px;
+  background:linear-gradient(90deg,#1a0a2e 0%,#2a0e48 40%,#1a0a2e 100%);
+  border-bottom:1px solid rgba(201,148,14,.25);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 20px;
+}
+.mb-symbols{display:flex;align-items:center;gap:10px;font-size:18px;opacity:.85}
+.mb-symbols span{animation:symglow 3s ease-in-out infinite}
+.mb-symbols span:nth-child(2){animation-delay:.5s}
+.mb-symbols span:nth-child(3){animation-delay:1s}
+@keyframes symglow{0%,100%{opacity:.6}50%{opacity:1;filter:drop-shadow(0 0 4px rgba(201,148,14,.8))}}
+.mb-center{display:flex;flex-direction:column;align-items:center;line-height:1.2}
+.mb-greet{font-size:10px;color:rgba(255,255,255,.55);letter-spacing:1.5px;text-transform:uppercase}
+.mb-song{font-size:13px;font-weight:600;color:#f0c040;letter-spacing:.5px;font-family:'Cinzel',serif}
+.mb-right{display:flex;align-items:center;gap:10px}
+.mb-pulse{width:7px;height:7px;border-radius:50%;background:#4caf50;box-shadow:0 0 6px #4caf50;animation:pulse-dot 1.2s ease-in-out infinite}
+.mb-pulse.paused{background:#888;box-shadow:none;animation:none}
+@keyframes pulse-dot{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:.6}}
+.mb-btn{
+  display:flex;align-items:center;gap:6px;
+  background:rgba(201,148,14,.15);border:1px solid rgba(201,148,14,.3);
+  border-radius:50px;padding:4px 12px;cursor:pointer;
+  color:var(--gold2);font-size:12px;font-weight:600;
+  transition:all .3s;white-space:nowrap;font-family:'Poppins',sans-serif;
+}
+.mb-btn:hover{background:rgba(201,148,14,.25);border-color:var(--gold2)}
+.mb-btn i{font-size:14px;transition:color .3s}
+.mb-btn.muted i{color:#888}
+/* ── NAV ── */
+nav{
+  position:fixed;top:44px;left:0;right:0;z-index:900;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 48px;
+  background:var(--glass);backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(201,148,14,.12);
+  transition:padding .3s;
+}
+nav.scrolled{padding:10px 48px;top:44px}
+.nl{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nl-om{font-size:26px;color:var(--gold);filter:drop-shadow(0 0 8px var(--gold));animation:omglow 3s ease-in-out infinite}
+@keyframes omglow{0%,100%{filter:drop-shadow(0 0 6px rgba(201,148,14,.4))}50%{filter:drop-shadow(0 0 18px rgba(201,148,14,.8))}}
+.nl-name{font-family:'Cinzel',serif;font-size:20px;font-weight:700;letter-spacing:3px;background:linear-gradient(135deg,var(--gold2),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:12px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;transition:color .3s}
+.nav-links a:hover{color:var(--gold2)}
+.nav-cta{padding:9px 22px;background:linear-gradient(135deg,var(--gold),#a07008);color:#000;border:none;border-radius:50px;font-size:12px;font-weight:700;letter-spacing:1px;cursor:pointer;transition:all .3s;text-transform:uppercase}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,148,14,.35)}
+.nav-mobile{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none}
+.nav-mobile span{width:22px;height:2px;background:var(--gold);border-radius:2px;transition:.3s}
+
+/* ── HERO ── */
+#hero{position:relative;height:100vh;min-height:680px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 20% 60%,rgba(232,98,26,.07) 0%,transparent 55%),
+    radial-gradient(ellipse at 80% 25%,rgba(201,148,14,.07) 0%,transparent 50%),
+    radial-gradient(ellipse at 50% 90%,rgba(90,40,160,.09) 0%,transparent 55%),
+    var(--bg);
+}
+.mandala{
+  position:absolute;width:min(700px,90vw);height:min(700px,90vw);
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  opacity:.04;animation:spin 80s linear infinite;pointer-events:none;
+}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.particles{position:absolute;inset:0;pointer-events:none}
+.p{position:absolute;width:2px;height:2px;border-radius:50%;background:var(--gold);opacity:0;animation:pfloat var(--d,8s) var(--dl,0s) linear infinite}
+@keyframes pfloat{0%{transform:translateY(100vh);opacity:0}10%{opacity:.7}90%{opacity:.5}100%{transform:translateY(-50px);opacity:0}}
+.hero-content{position:relative;z-index:2;text-align:center;padding:0 24px;max-width:860px}
+.h-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 18px;background:rgba(201,148,14,.08);border:1px solid rgba(201,148,14,.25);border-radius:50px;font-size:11px;font-weight:600;color:var(--gold2);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:28px;animation:fiu .8s ease both}
+.h-om{font-size:clamp(56px,10vw,110px);color:var(--gold);line-height:1;margin-bottom:16px;animation:fiu .8s .2s ease both,omglow 4s ease-in-out infinite}
+.h-title{font-family:'Cinzel',serif;font-size:clamp(30px,6vw,70px);font-weight:900;line-height:1.1;background:linear-gradient(180deg,#fff 0%,var(--gold2) 55%,var(--gold) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:12px;animation:fiu .8s .4s ease both}
+.h-sanskrit{font-family:'Noto Serif',serif;font-style:italic;font-size:clamp(13px,1.8vw,17px);color:var(--saffron2);margin-bottom:14px;animation:fiu .8s .5s ease both}
+.h-sub{font-size:clamp(13px,1.5vw,16px);color:var(--muted);max-width:560px;margin:0 auto 44px;line-height:1.85;animation:fiu .8s .6s ease both}
+.h-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;animation:fiu .8s .8s ease both}
+.btn-p{padding:14px 32px;background:linear-gradient(135deg,var(--gold),#a07008);color:#000;border:none;border-radius:50px;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:.5px;transition:all .3s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn-p:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(201,148,14,.4)}
+.btn-s{padding:14px 32px;background:transparent;color:var(--gold2);border:1px solid rgba(201,148,14,.35);border-radius:50px;font-size:14px;font-weight:500;cursor:pointer;transition:all .3s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn-s:hover{background:rgba(201,148,14,.08);border-color:var(--gold);transform:translateY(-3px)}
+.h-stats{position:absolute;bottom:56px;left:50%;transform:translateX(-50%);display:flex;gap:48px;animation:fiu 1s 1s ease both;white-space:nowrap}
+.hs{text-align:center}
+.hs-n{font-family:'Cinzel',serif;font-size:clamp(22px,3vw,34px);font-weight:700;color:var(--gold2)}
+.hs-l{font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-top:2px}
+.scroll-ind{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;animation:fiu 1s 1.2s ease both}
+.scroll-line{width:1px;height:36px;background:linear-gradient(var(--gold),transparent);animation:sl 2s ease-in-out infinite}
+@keyframes sl{0%,100%{opacity:.4;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.3)}}
+@keyframes fiu{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── COMMON ── */
+section{padding:96px 0}
+.container{max-width:1200px;margin:0 auto;padding:0 40px}
+.stag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--saffron);margin-bottom:14px}
+.stag::before,.stag::after{content:'';display:block;width:22px;height:1px;background:var(--saffron);opacity:.5}
+.s-title{font-family:'Cinzel',serif;font-size:clamp(26px,3.5vw,44px);font-weight:700;color:var(--cream);line-height:1.2;margin-bottom:14px}
+.s-desc{font-size:15px;color:var(--muted);max-width:580px;line-height:1.85}
+.s-head{margin-bottom:56px}
+.reveal{opacity:0;transform:translateY(36px);transition:all .8s cubic-bezier(.4,0,.2,1)}
+.reveal.on{opacity:1;transform:translateY(0)}
+.rd1{transition-delay:.1s}.rd2{transition-delay:.2s}.rd3{transition-delay:.3s}.rd4{transition-delay:.4s}
+.divider{width:100%;height:1px;background:linear-gradient(to right,transparent,rgba(201,148,14,.2),transparent);margin:0}
+
+/* ── ABOUT ── */
+#about{background:var(--bg2);position:relative;overflow:hidden}
+#about::after{content:'';position:absolute;right:-150px;top:50%;transform:translateY(-50%);width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(201,148,14,.04),transparent 70%);pointer-events:none}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.about-img-wrap{position:relative}
+.about-img-glow{position:absolute;inset:-2px;border-radius:calc(var(--rl)+3px);background:linear-gradient(135deg,var(--gold),transparent 50%,var(--saffron));z-index:0}
+.about-img{width:100%;aspect-ratio:4/5;border-radius:var(--rl);overflow:hidden;position:relative;z-index:1}
+.about-img img{width:100%;height:100%;object-fit:cover}
+.about-img::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,148,14,.1),rgba(232,98,26,.05))}
+.about-float{position:absolute;bottom:-16px;right:-16px;z-index:2;background:var(--bg3);border:1px solid var(--cb);border-radius:var(--r);padding:18px 22px;backdrop-filter:blur(20px)}
+.af-n{font-family:'Cinzel',serif;font-size:36px;font-weight:700;color:var(--gold2);line-height:1}
+.af-l{font-size:11px;color:var(--muted);margin-top:4px}
+.about-text .s-desc{max-width:100%}
+.feat-list{list-style:none;display:flex;flex-direction:column;gap:18px;margin-top:32px}
+.fi{display:flex;align-items:flex-start;gap:14px}
+.fi-icon{width:38px;height:38px;background:rgba(201,148,14,.1);border:1px solid rgba(201,148,14,.2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;color:var(--gold)}
+.fi-text h4{font-size:14px;font-weight:600;color:var(--cream);margin-bottom:3px}
+.fi-text p{font-size:12.5px;color:var(--muted);line-height:1.65}
+
+/* ── VERSE ── */
+#verse{padding:80px 0;position:relative;overflow:hidden}
+#verse::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(232,98,26,.05),transparent 60%),radial-gradient(ellipse at 70% 50%,rgba(201,148,14,.05),transparent 60%)}
+.verse-card{
+  background:var(--bg2);border:1px solid var(--cb);border-radius:var(--rl);
+  padding:56px 64px;text-align:center;max-width:780px;margin:0 auto;
+  position:relative;
+}
+.verse-card::before{content:'॥';position:absolute;top:-18px;left:50%;transform:translateX(-50%);background:var(--bg);padding:0 16px;font-size:28px;color:var(--gold);line-height:1}
+.vc-label{font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--saffron);margin-bottom:24px;display:block}
+.vc-skt{font-family:'Noto Serif',serif;font-size:clamp(16px,2.2vw,22px);color:var(--cream);line-height:1.9;margin-bottom:20px}
+.vc-divider{width:48px;height:1px;background:var(--gold);opacity:.4;margin:0 auto 20px}
+.vc-tr{font-size:14px;color:var(--muted);font-style:italic;line-height:1.85;margin-bottom:16px}
+.vc-src{font-size:12px;color:var(--gold);font-weight:500;letter-spacing:1px}
+
+/* ── PURANAS ── */
+#puranas{position:relative}
+.filter-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:44px}
+.fb{padding:8px 20px;border-radius:50px;font-size:12px;font-weight:600;letter-spacing:.5px;cursor:pointer;transition:all .3s;border:1px solid rgba(201,148,14,.2);background:transparent;color:var(--muted);text-transform:uppercase}
+.fb.active,.fb:hover{background:rgba(201,148,14,.1);border-color:var(--gold);color:var(--gold2)}
+.pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(272px,1fr));gap:22px}
+.pc{
+  background:var(--card);border:1px solid var(--cb);border-radius:var(--rl);
+  overflow:hidden;cursor:pointer;
+  transition:transform .4s cubic-bezier(.4,0,.2,1),border-color .3s,box-shadow .4s;
+  position:relative;
+}
+.pc:hover{transform:translateY(-8px);border-color:rgba(201,148,14,.45);box-shadow:var(--shg),0 20px 56px rgba(0,0,0,.4)}
+.pc-img{position:relative;height:210px;overflow:hidden;background:var(--bg3)}
+.pc-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.pc:hover .pc-img img{transform:scale(1.08)}
+.pc-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(7,5,15,.9))}
+.pc-badge{position:absolute;top:10px;right:10px;padding:3px 11px;background:rgba(201,148,14,.88);border-radius:50px;font-size:10px;font-weight:700;color:#000;letter-spacing:.5px}
+.pc-num{position:absolute;bottom:10px;left:14px;font-family:'Cinzel',serif;font-size:12px;font-weight:600;color:var(--gold);opacity:.7}
+.pc-shimmer{position:absolute;inset:0;background:linear-gradient(90deg,var(--bg3) 25%,var(--bg2) 50%,var(--bg3) 75%);background-size:200% 100%;animation:shim 1.5s infinite}
+@keyframes shim{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.pc-body{padding:18px}
+.pc-skt{font-family:'Noto Serif',serif;font-style:italic;font-size:13px;color:var(--saffron2);margin-bottom:3px}
+.pc-title{font-family:'Cinzel',serif;font-size:17px;font-weight:700;color:var(--cream);margin-bottom:7px}
+.pc-desc{font-size:12.5px;color:var(--muted);line-height:1.65;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pc-foot{display:flex;align-items:center;justify-content:space-between;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,.05)}
+.pc-shlokas{font-size:11.5px;color:var(--muted)}
+.pc-shlokas b{color:var(--gold);font-weight:600}
+.pc-arr{width:30px;height:30px;background:rgba(201,148,14,.1);border:1px solid rgba(201,148,14,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--gold);transition:all .3s}
+.pc:hover .pc-arr{background:var(--gold);color:#000}
+.pc.hidden{display:none}
+
+/* ── MODAL ── */
+.mo{position:fixed;inset:0;background:rgba(0,0,0,.88);backdrop-filter:blur(10px);z-index:2000;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;visibility:hidden;transition:all .3s}
+.mo.open{opacity:1;visibility:visible}
+.md{background:var(--bg2);border:1px solid var(--cb);border-radius:var(--rl);width:100%;max-width:780px;max-height:90vh;overflow-y:auto;transform:translateY(24px) scale(.96);transition:all .35s cubic-bezier(.4,0,.2,1)}
+.mo.open .md{transform:translateY(0) scale(1)}
+.md::-webkit-scrollbar{width:3px}
+.md::-webkit-scrollbar-thumb{background:var(--gold)}
+.md-hero{position:relative;height:280px;background:var(--bg3)}
+.md-hero img{width:100%;height:100%;object-fit:cover}
+.md-hero-ov{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 35%,var(--bg2) 100%)}
+.md-close{position:absolute;top:14px;right:14px;width:38px;height:38px;background:rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--cream);font-size:16px;transition:all .3s;z-index:1}
+.md-close:hover{background:rgba(201,148,14,.2);border-color:var(--gold)}
+.md-body{padding:28px 36px 36px}
+.md-tag{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--saffron);margin-bottom:6px}
+.md-title{font-family:'Cinzel',serif;font-size:clamp(22px,3vw,30px);font-weight:700;color:var(--cream);margin-bottom:6px}
+.md-skt{font-family:'Noto Serif',serif;font-style:italic;font-size:15px;color:var(--gold);margin-bottom:24px}
+.md-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px}
+.ms{background:rgba(255,255,255,.03);border:1px solid rgba(201,148,14,.12);border-radius:12px;padding:14px;text-align:center}
+.ms-v{font-family:'Cinzel',serif;font-size:18px;font-weight:700;color:var(--gold2)}
+.ms-k{font-size:10px;color:var(--muted);margin-top:3px}
+.md-desc{font-size:14px;color:var(--muted);line-height:1.95;margin-bottom:20px}
+.md-themes{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.tt{padding:5px 13px;background:rgba(232,98,26,.08);border:1px solid rgba(232,98,26,.2);border-radius:50px;font-size:11px;color:var(--saffron2)}
+.md-verse{background:rgba(201,148,14,.05);border-left:3px solid var(--gold);border-radius:0 12px 12px 0;padding:18px 22px}
+.md-verse .vs{font-family:'Noto Serif',serif;font-style:italic;font-size:14px;color:var(--cream);line-height:1.85;margin-bottom:8px}
+.md-verse .vt{font-size:12.5px;color:var(--muted);line-height:1.7}
+
+/* ── CATEGORIES ── */
+#categories{background:var(--bg3)}
+.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.cat-card{border-radius:var(--r);overflow:hidden;cursor:pointer;transition:transform .4s;position:relative;aspect-ratio:2/3}
+.cat-card:hover{transform:scale(1.03)}
+.cat-bg{width:100%;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:22px}
+.cat-icon{font-size:36px;margin-bottom:10px;filter:drop-shadow(0 0 8px rgba(255,255,255,.3))}
+.cat-name{font-family:'Cinzel',serif;font-size:17px;font-weight:700;color:#fff;margin-bottom:4px}
+.cat-cnt{font-size:12px;opacity:.7;color:#fff}
+.cat-vaishnava{background:linear-gradient(160deg,#0a1a4e 0%,#1a3a8e 50%,#0d2060 100%)}
+.cat-shaiva{background:linear-gradient(160deg,#1a0a0a 0%,#4a1010 50%,#2a0808 100%)}
+.cat-shakta{background:linear-gradient(160deg,#2a0a3a 0%,#5a1a7a 50%,#3a0a4a 100%)}
+.cat-brahma{background:linear-gradient(160deg,#2a1a04 0%,#6a4008 50%,#3a2404 100%)}
+
+/* ── QUOTE BANNER ── */
+#quote-banner{padding:72px 0;background:var(--bg2);text-align:center}
+.qb-text{font-family:'Cinzel',serif;font-size:clamp(16px,2.2vw,26px);color:var(--cream);max-width:760px;margin:0 auto;line-height:1.7;position:relative;padding:0 40px}
+.qb-text::before{content:'\201C';position:absolute;left:0;top:-.2em;font-size:80px;color:var(--gold);opacity:.2;line-height:.8}
+.qb-text::after{content:'\201D';position:absolute;right:0;bottom:-.3em;font-size:80px;color:var(--gold);opacity:.2;line-height:.8}
+.qb-src{font-size:13px;color:var(--muted);margin-top:20px;letter-spacing:1px}
+
+/* ── FOOTER ── */
+footer{background:var(--bg2);border-top:1px solid rgba(201,148,14,.1);padding:56px 0 28px}
+.fg{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:44px}
+.fb-brand h2{font-family:'Cinzel',serif;font-size:22px;font-weight:700;background:linear-gradient(135deg,var(--gold2),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:10px}
+.fb-brand p{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:20px}
+.socials{display:flex;gap:10px}
+.sl{width:38px;height:38px;background:rgba(201,148,14,.07);border:1px solid rgba(201,148,14,.18);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--gold);text-decoration:none;font-size:15px;transition:all .3s}
+.sl:hover{background:rgba(201,148,14,.15);transform:translateY(-3px)}
+.fc h3{font-family:'Cinzel',serif;font-size:13px;font-weight:600;color:var(--cream);letter-spacing:1px;margin-bottom:18px;text-transform:uppercase}
+.fl{list-style:none;display:flex;flex-direction:column;gap:11px}
+.fl a{font-size:13px;color:var(--muted);text-decoration:none;transition:color .3s}
+.fl a:hover{color:var(--gold2)}
+.fb-btm{border-top:1px solid rgba(255,255,255,.04);padding-top:22px;display:flex;align-items:center;justify-content:space-between}
+.fb-btm p,.fb-btm a{font-size:12px;color:var(--muted);text-decoration:none}
+.fb-btm-l{display:flex;gap:20px}
+
+/* ── MOBILE MENU ── */
+.mob-menu{position:fixed;top:44px;right:-280px;width:260px;height:calc(100vh - 44px);background:var(--bg3);border-left:1px solid var(--cb);z-index:999;padding:70px 24px 24px;transition:right .3s;display:flex;flex-direction:column;gap:20px}
+.mob-menu.open{right:0}
+.mob-menu a{color:var(--text);text-decoration:none;font-size:15px;font-weight:500;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05);transition:color .3s}
+.mob-menu a:hover{color:var(--gold2)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .fg{grid-template-columns:1fr 1fr;gap:32px}
+  .cat-grid{grid-template-columns:repeat(2,1fr)}
+  .cat-card{aspect-ratio:3/2}
+}
+@media(max-width:768px){
+  nav{padding:12px 20px;top:44px}
+  nav.scrolled{padding:10px 20px;top:44px}
+  .nav-links,.nav-cta{display:none}
+  .nav-mobile{display:flex}
+  .mb-symbols{display:none}
+  .mb-center{align-items:flex-start}
+  #music-bar{padding:0 14px}
+  .container{padding:0 20px}
+  section{padding:64px 0}
+  .about-grid{grid-template-columns:1fr}
+  .about-img{aspect-ratio:16/9}
+  .about-float{bottom:12px;right:12px}
+  .h-stats{gap:24px;bottom:48px}
+  .verse-card{padding:36px 24px}
+  .md-stats{grid-template-columns:1fr 1fr}
+  .md-body{padding:20px}
+  .cat-grid{grid-template-columns:repeat(2,1fr)}
+  .fg{grid-template-columns:1fr}
+  .fb-btm{flex-direction:column;gap:10px;text-align:center}
+  .fb-btm-l{justify-content:center}
+  .pg{grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+}
+@media(max-width:480px){
+  .h-stats{gap:16px}
+  .hs-n{font-size:22px}
+  .cat-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- MUSIC BAR -->
+<div id="music-bar">
+  <div class="mb-symbols">
+    <span>🕉</span>
+    <span>🪔</span>
+    <span>🔱</span>
+  </div>
+  <div class="mb-center">
+    <span class="mb-greet">Namaskaram Pilgrim</span>
+    <span class="mb-song">Sri Guruvu gari ganam</span>
+  </div>
+  <div class="mb-right">
+    <div class="mb-pulse paused" id="mbPulse"></div>
+    <button class="mb-btn muted" id="mbBtn" onclick="toggleMusic()">
+      <i class="fas fa-volume-xmark" id="mbIcon"></i>
+      <span id="mbLabel">Click to Play</span>
+    </button>
+  </div>
+</div>
+
+<!-- Hidden YouTube Player -->
+<div id="ytPlayerWrap" style="position:fixed;bottom:-200px;left:-200px;width:1px;height:1px;overflow:hidden;pointer-events:none;z-index:-1">
+  <div id="ytPlayer"></div>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="nl" href="#">
+    <span class="nl-om">ॐ</span>
+    <span class="nl-name">PURANAM</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#puranas">18 Puranas</a></li>
+    <li><a href="#categories">Categories</a></li>
+    <li><a href="#verse">Verses</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('puranas').scrollIntoView({behavior:'smooth'})">Explore ✦</button>
+  <button class="nav-mobile" id="mobBtn" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mobMenu">
+  <a href="#about" onclick="closeMob()">About Puranas</a>
+  <a href="#puranas" onclick="closeMob()">18 Puranas</a>
+  <a href="#categories" onclick="closeMob()">Categories</a>
+  <a href="#verse" onclick="closeMob()">Daily Verse</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <!-- Mandala SVG -->
+  <svg class="mandala" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#c9940e" fill="none">
+      <circle cx="200" cy="200" r="190" stroke-width=".5"/>
+      <circle cx="200" cy="200" r="168" stroke-width=".3"/>
+      <circle cx="200" cy="200" r="140" stroke-width=".5"/>
+      <circle cx="200" cy="200" r="110" stroke-width=".3"/>
+      <circle cx="200" cy="200" r="80" stroke-width=".5"/>
+      <circle cx="200" cy="200" r="50" stroke-width=".3"/>
+      <circle cx="200" cy="200" r="22" stroke-width=".5"/>
+      <g stroke-width=".4">
+        <line x1="200" y1="10" x2="200" y2="390"/><line x1="10" y1="200" x2="390" y2="200"/>
+        <line x1="200" y1="10" x2="200" y2="390" transform="rotate(22.5 200 200)"/>
+        <line x1="200" y1="10" x2="200" y2="390" transform="rotate(45 200 200)"/>
+        <line x1="200" y1="10" x2="200" y2="390" transform="rotate(67.5 200 200)"/>
+        <line x1="200" y1="10" x2="200" y2="390" transform="rotate(90 200 200)"/>
+        <line x1="200" y1="10" x2="200" y2="390" transform="rotate(112.5 200 200)"/>
+        <line x1="200" y1="10" x2="200" y2="390" transform="rotate(135 200 200)"/>
+        <line x1="200" y1="10" x2="200" y2="390" transform="rotate(157.5 200 200)"/>
+      </g>
+      <g stroke-width=".3">
+        <ellipse cx="200" cy="30" rx="7" ry="18" transform="rotate(0 200 200)"/>
+        <ellipse cx="200" cy="30" rx="7" ry="18" transform="rotate(45 200 200)"/>
+        <ellipse cx="200" cy="30" rx="7" ry="18" transform="rotate(90 200 200)"/>
+        <ellipse cx="200" cy="30" rx="7" ry="18" transform="rotate(135 200 200)"/>
+        <ellipse cx="200" cy="30" rx="7" ry="18" transform="rotate(180 200 200)"/>
+        <ellipse cx="200" cy="30" rx="7" ry="18" transform="rotate(225 200 200)"/>
+        <ellipse cx="200" cy="30" rx="7" ry="18" transform="rotate(270 200 200)"/>
+        <ellipse cx="200" cy="30" rx="7" ry="18" transform="rotate(315 200 200)"/>
+      </g>
+    </g>
+  </svg>
+  <div class="particles" id="particles"></div>
+  <div class="hero-content">
+    <div class="h-badge">✦ Eternal Knowledge of India ✦</div>
+    <div class="h-om">ॐ</div>
+    <h1 class="h-title">Sacred Wisdom<br>of the Ages</h1>
+    <p class="h-sanskrit">सर्वे भवन्तु सुखिनः सर्वे सन्तु निरामयाः</p>
+    <p class="h-sub">Discover the eighteen Mahapuranas — the ancient encyclopedias of Hindu civilization, containing cosmology, philosophy, devotion, and the eternal stories of gods and sages.</p>
+    <div class="h-actions">
+      <a href="#puranas" class="btn-p"><i class="fas fa-book-open"></i> Explore Puranas</a>
+      <a href="#about" class="btn-s"><i class="fas fa-om"></i> Learn More</a>
+    </div>
+  </div>
+  <div class="h-stats">
+    <div class="hs"><div class="hs-n" data-target="18">0</div><div class="hs-l">Mahapuranas</div></div>
+    <div class="hs"><div class="hs-n" data-target="400">0</div><div class="hs-l">K+ Shlokas</div></div>
+    <div class="hs"><div class="hs-n" data-target="5">0</div><div class="hs-l">Millennia Old</div></div>
+    <div class="hs"><div class="hs-n" data-target="18">0</div><div class="hs-l">Sacred Themes</div></div>
+  </div>
+  <div class="scroll-ind">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img-wrap reveal">
+        <div class="about-img-glow"></div>
+        <div class="about-img">
+          <img src="https://image.pollinations.ai/prompt/ancient%20Hindu%20temple%20Brihadeeswarar%20golden%20sunset%20intricate%20stone%20carvings%20spiritual%20atmosphere%20divine%20light%20rays%20South%20India?width=480&height=600&nologo=true" alt="Sacred Temple" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22480%22 height=%22600%22><rect fill=%22%231a1030%22 width=%22480%22 height=%22600%22/><text x=%22240%22 y=%22300%22 text-anchor=%22middle%22 fill=%22%23c9940e%22 font-size=%2260%22>ॐ</text></svg>'">
+        </div>
+        <div class="about-float">
+          <div class="af-n">18</div>
+          <div class="af-l">Sacred Puranas</div>
+        </div>
+      </div>
+      <div class="about-text reveal rd1">
+        <div class="stag">What are Puranas</div>
+        <h2 class="s-title">The Living<br>Scripture of<br>Hindu Civilization</h2>
+        <p class="s-desc">The Puranas (Sanskrit: पुराण, "ancient") are a vast genre of Indian literature that encyclopedically cover the subjects of cosmogony, cosmology, genealogies of gods, goddesses, kings, heroes, sages, and demigods. Composed primarily in Sanskrit, they have been a living tradition for thousands of years.</p>
+        <ul class="feat-list">
+          <li class="fi">
+            <div class="fi-icon"><i class="fas fa-universe" style="font-size:14px">🌌</i></div>
+            <div class="fi-text"><h4>Pancha Lakshana</h4><p>Each Purana contains five defining characteristics: Sarga (creation), Pratisarga (recreation), Vamsha (genealogy), Manvantara (cosmic cycles), and Vamsyanucharita (royal histories).</p></div>
+          </li>
+          <li class="fi">
+            <div class="fi-icon"><i class="fas fa-star" style="font-size:14px">✨</i></div>
+            <div class="fi-text"><h4>Three Traditions</h4><p>The Puranas are classified into Sattvic (Vaishnava), Rajasic (Brahma), and Tamasic (Shaiva) categories, each revealing a facet of the divine through beloved stories and wisdom.</p></div>
+          </li>
+          <li class="fi">
+            <div class="fi-icon"><i class="fas fa-heart" style="font-size:14px">🙏</i></div>
+            <div class="fi-text"><h4>Path of Bhakti</h4><p>The Puranas democratized Hindu philosophy by making abstract Vedic knowledge accessible through stories, metaphors, and devotional narratives that speak to all people.</p></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- VERSE OF THE DAY -->
+<section id="verse">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:40px" class="reveal">
+      <div class="stag" style="justify-content:center">Daily Wisdom</div>
+      <h2 class="s-title" style="text-align:center">Verse of the Day</h2>
+    </div>
+    <div class="verse-card reveal rd1">
+      <span class="vc-label">✦ Bhagavata Purana — 1.1.2 ✦</span>
+      <p class="vc-skt">धर्मः प्रोज्झितकैतवोऽत्र परमो निर्मत्सराणां सतां<br>वेद्यं वास्तवमत्र वस्तु शिवदं तापत्रयोन्मूलनम्</p>
+      <div class="vc-divider"></div>
+      <p class="vc-tr">"Completely rejecting all religious activities which are materially motivated, this Bhagavata Purana propounds the highest truth, which is understandable by those devotees who are fully pure in heart. The highest truth is reality distinguished from illusion for the welfare of all."</p>
+      <p class="vc-src">— Śrīmad Bhāgavatam 1.1.2</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 18 PURANAS -->
+<section id="puranas">
+  <div class="container">
+    <div class="s-head">
+      <div class="stag reveal">The Eighteen Mahapuranas</div>
+      <h2 class="s-title reveal rd1">Explore All 18<br>Sacred Puranas</h2>
+      <p class="s-desc reveal rd2">Each Purana is a universe unto itself — dive deep into the stories, philosophy, and divine wisdom that have shaped Indian civilization for millennia.</p>
+    </div>
+    <div class="filter-row reveal">
+      <button class="fb active" data-filter="all">All Puranas</button>
+      <button class="fb" data-filter="vaishnava">✦ Vaishnava</button>
+      <button class="fb" data-filter="shaiva">✦ Shaiva</button>
+      <button class="fb" data-filter="shakta">✦ Shakta</button>
+      <button class="fb" data-filter="brahma">✦ Brahma</button>
+    </div>
+    <div class="pg" id="puranaGrid"></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- QUOTE BANNER -->
+<section id="quote-banner">
+  <div class="container">
+    <blockquote class="qb-text reveal">
+      The Puranas are the fifth Veda. Through stories, legends and myths, they carry the eternal flame of Vedic wisdom into every home and heart across the ages.
+    </blockquote>
+    <p class="qb-src reveal rd1">— Traditional Teaching on the Mahapuranas</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CATEGORIES -->
+<section id="categories">
+  <div class="container">
+    <div class="s-head">
+      <div class="stag reveal">By Tradition</div>
+      <h2 class="s-title reveal rd1">Explore by<br>Divine Tradition</h2>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-card reveal" onclick="filterAndScroll('vaishnava')">
+        <div class="cat-bg cat-vaishnava">
+          <div class="cat-icon">🪷</div>
+          <div class="cat-name">Vaishnava Puranas</div>
+          <div class="cat-cnt">10 Sacred Texts · Lord Vishnu</div>
+        </div>
+      </div>
+      <div class="cat-card reveal rd1" onclick="filterAndScroll('shaiva')">
+        <div class="cat-bg cat-shaiva">
+          <div class="cat-icon">🔱</div>
+          <div class="cat-name">Shaiva Puranas</div>
+          <div class="cat-cnt">4 Sacred Texts · Lord Shiva</div>
+        </div>
+      </div>
+      <div class="cat-card reveal rd2" onclick="filterAndScroll('shakta')">
+        <div class="cat-bg cat-shakta">
+          <div class="cat-icon">🌺</div>
+          <div class="cat-name">Shakta Puranas</div>
+          <div class="cat-cnt">2 Sacred Texts · Divine Mother</div>
+        </div>
+      </div>
+      <div class="cat-card reveal rd3" onclick="filterAndScroll('brahma')">
+        <div class="cat-bg cat-brahma">
+          <div class="cat-icon">🪔</div>
+          <div class="cat-name">Brahma Puranas</div>
+          <div class="cat-cnt">4 Sacred Texts · Lord Brahma</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="fg">
+      <div class="fb-brand">
+        <h2>ॐ PURANAM</h2>
+        <p>Bringing the eternal wisdom of the eighteen Mahapuranas to seekers across the world. May these ancient stories illuminate your path to truth, beauty, and liberation.</p>
+        <div class="socials">
+          <a href="#" class="sl"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="sl"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="sl"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="sl"><i class="fab fa-telegram"></i></a>
+          <a href="#" class="sl"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="fc">
+        <h3>Puranas</h3>
+        <ul class="fl">
+          <li><a href="#">Bhagavata Purana</a></li>
+          <li><a href="#">Vishnu Purana</a></li>
+          <li><a href="#">Shiva Purana</a></li>
+          <li><a href="#">Skanda Purana</a></li>
+          <li><a href="#">Markandeya Purana</a></li>
+          <li><a href="#">All 18 Puranas →</a></li>
+        </ul>
+      </div>
+      <div class="fc">
+        <h3>Explore</h3>
+        <ul class="fl">
+          <li><a href="#about">What are Puranas</a></li>
+          <li><a href="#categories">By Tradition</a></li>
+          <li><a href="#verse">Daily Verse</a></li>
+          <li><a href="#">Sanskrit Shlokas</a></li>
+          <li><a href="#">Sacred Stories</a></li>
+        </ul>
+      </div>
+      <div class="fc">
+        <h3>Connect</h3>
+        <ul class="fl">
+          <li><a href="#">Subscribe</a></li>
+          <li><a href="#">Newsletter</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Donate</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fb-btm">
+      <p>© 2025 Puranam. Made with 🙏 for seekers of eternal wisdom.</p>
+      <div class="fb-btm-l">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="mo" id="modal" onclick="closeModal(event)">
+  <div class="md" id="modalContent">
+    <div class="md-hero">
+      <img id="modalImg" src="" alt="" loading="lazy">
+      <div class="md-hero-ov"></div>
+      <button class="md-close" onclick="closeModalBtn()"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="md-body">
+      <div class="md-tag" id="modalTag"></div>
+      <div class="md-title" id="modalTitle"></div>
+      <div class="md-skt" id="modalSkt"></div>
+      <div class="md-stats" id="modalStats"></div>
+      <div class="md-desc" id="modalDesc"></div>
+      <div class="md-themes" id="modalThemes"></div>
+      <div class="md-verse">
+        <div class="vs" id="modalVerse"></div>
+        <div class="vt" id="modalTrans"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────
+const PURANAS = [
+  {
+    id:1, num:"01", name:"Brahma Purana", sanskrit:"ब्रह्म पुराण",
+    deity:"Brahma", cat:"brahma", shlokas:"14,000", adhyayas:"246", type:"Rajasic",
+    img:"Lord%20Brahma%20four%20faces%20golden%20lotus%20seat%20creator%20god%20divine%20light%20ancient%20Indian%20Pahari%20miniature%20painting%20ornate%20gold%20border%20rich%20jewel%20tones%20spiritual",
+    topics:["Creation","Tirthas","Geography","Sun Worship"],
+    desc:"The first and most ancient of all Mahapuranas, the Brahma Purana opens with a cosmic dialogue at the sacred forest of Naimisharanya. It describes the original creation of the universe, the sacred geography of the Godavari river, the glory of Sun worship, and the stories of gods, sages, and legendary kings.",
+    verse:"आदौ सर्गो महापद्मं सत्त्वसंस्था ततो मता",
+    trans:"In the beginning was the great lotus — from that emerged the order of existence.",
+    themes:["Cosmology","Sacred Geography","Sun Worship","Dharma"]
+  },
+  {
+    id:2, num:"02", name:"Padma Purana", sanskrit:"पद्म पुराण",
+    deity:"Vishnu", cat:"vaishnava", shlokas:"55,000", adhyayas:"641", type:"Sattvic",
+    img:"Lord%20Vishnu%20resting%20Shesha%20serpent%20cosmic%20lotus%20navel%20Brahma%20primordial%20ocean%20divine%20blue%20skin%20four%20arms%20ancient%20Indian%20Pahari%20miniature%20painting%20gold%20border%20jewel%20tones",
+    topics:["Vishnu","Bhakti","Creation","Rama Stories"],
+    desc:"One of the largest Puranas at 55,000 verses, the Padma Purana blooms like the cosmic lotus from Vishnu's navel. Divided into five major sections — earth, heaven, creation, upper realms, and liberation — it narrates the glorious deeds of Vishnu, the complete story of Rama, and the supreme path of devotion.",
+    verse:"पद्मनाभं सुरेशं विश्वेशं विश्वरूपिणम्",
+    trans:"Lotus-naveled, lord of gods, lord of the universe — the one who embodies all forms.",
+    themes:["Vishnu Bhakti","Rama Stories","Pilgrimage","Moksha"]
+  },
+  {
+    id:3, num:"03", name:"Vishnu Purana", sanskrit:"विष्णु पुराण",
+    deity:"Vishnu", cat:"vaishnava", shlokas:"23,000", adhyayas:"126", type:"Sattvic",
+    img:"Lord%20Vishnu%20standing%20majestic%20four%20arms%20conch%20Panchajanya%20Sudarshana%20wheel%20mace%20lotus%20divine%20blue%20skin%20golden%20crown%20ancient%20Vaishnava%20painting%20intricate%20gold%20details",
+    topics:["Vishnu","Ten Avatars","Prahlada","Dhruva"],
+    desc:"Considered one of the most complete and systematic Puranas, the Vishnu Purana presents Lord Vishnu as the supreme reality. It narrates the ten avatars in detail, includes the beloved stories of the boy-devotee Prahlada and the child-sage Dhruva, and concludes with a vision of the Kali Yuga and the coming of Kalki.",
+    verse:"विष्णुर्विश्वस्य कर्ता च भर्ता चापि जनार्दनः",
+    trans:"Vishnu is the creator, sustainer, and protector of the universe — remover of all suffering.",
+    themes:["Ten Avatars","Bhakti","Cosmic Order","Prahlada & Dhruva"]
+  },
+  {
+    id:4, num:"04", name:"Shiva Purana", sanskrit:"शिव पुराण",
+    deity:"Shiva", cat:"shaiva", shlokas:"24,000", adhyayas:"108", type:"Tamasic",
+    img:"Lord%20Shiva%20deep%20meditation%20Himalaya%20snowcapped%20third%20eye%20crescent%20moon%20Ganga%20matted%20hair%20tiger%20skin%20moon%20divine%20cosmic%20form%20ancient%20Shaiva%20painting%20gold%20blue%20spiritual",
+    topics:["Shiva","Jyotirlingas","Parvati","Liberation"],
+    desc:"The Shiva Purana glorifies Shiva as the ultimate supreme deity — the destroyer, regenerator, and liberator of the cosmos. It elaborately describes the twelve sacred Jyotirlingas across India, the divine romance and cosmic marriage of Shiva and Parvati, the birth of Ganesha and Kartikeya, and the path to liberation through Shiva's grace.",
+    verse:"शिवः शक्तिः कामः क्षितिरथ रविः शीतकिरणः",
+    trans:"Shiva is energy, desire, earth, sun, and the cool-rayed moon — all existence is Shiva.",
+    themes:["Jyotirlingas","Shiva-Parvati","Liberation","Cosmic Dance"]
+  },
+  {
+    id:5, num:"05", name:"Bhagavata Purana", sanskrit:"भागवत पुराण",
+    deity:"Krishna", cat:"vaishnava", shlokas:"18,000", adhyayas:"335", type:"Sattvic",
+    img:"Lord%20Krishna%20playing%20flute%20Vrindavan%20peacock%20feather%20divine%20smile%20radiant%20blue%20skin%20golden%20ornaments%20Gopi%20devotees%20ancient%20Indian%20Madhubani%20Bhakti%20painting%20divine%20glow",
+    topics:["Krishna","Pure Bhakti","Avatars","Liberation"],
+    desc:"Universally regarded as the crown jewel of all Puranas, the Bhagavata Purana celebrates the divine glory of Lord Krishna. Its magnificent tenth canto — narrating Krishna's miraculous birth in Mathura, his childhood in Vrindavan, the Raas Leela dance, and the Kurukshetra war — has inspired countless poets, saints, and devotees across millennia.",
+    verse:"धर्मः प्रोज्झितकैतवोऽत्र परमो निर्मत्सराणां सतां",
+    trans:"This Bhagavata proclaims the highest truth, free from deception, meant for the purely devoted.",
+    themes:["Krishna Leela","Pure Bhakti","Ten Avatars","Salvation"]
+  },
+  {
+    id:6, num:"06", name:"Narada Purana", sanskrit:"नारद पुराण",
+    deity:"Vishnu", cat:"vaishnava", shlokas:"25,000", adhyayas:"163", type:"Sattvic",
+    img:"Sage%20Narada%20celestial%20wanderer%20veena%20instrument%20divine%20smile%20clouds%20heavenly%20realm%20ancient%20Indian%20Vaishnava%20painting%20golden%20halo%20saffron%20robes%20spiritual%20devotional%20art",
+    topics:["Bhakti","Sacred Music","Festivals","Pilgrimage"],
+    desc:"The Narada Purana is narrated by the immortal celestial sage Narada — Vishnu's eternal devotee and cosmic wanderer. A comprehensive guide to Vaishnava dharma, it covers sacred festivals, pilgrimage sites, the science of grammar, sacred music, astronomy, and the supreme path of devotion through chanting divine names.",
+    verse:"नारायण नारायण नारायण इति सततम्",
+    trans:"Narayana, Narayana — the ceaseless chanting of this name is the path to eternal liberation.",
+    themes:["Vishnu Bhakti","Festivals","Sacred Music","Grammar & Astronomy"]
+  },
+  {
+    id:7, num:"07", name:"Markandeya Purana", sanskrit:"मार्कण्डेय पुराण",
+    deity:"Devi", cat:"shakta", shlokas:"9,000", adhyayas:"137", type:"Rajasic",
+    img:"Goddess%20Durga%20Mahishasura%20Mardini%20ten%20arms%20divine%20weapons%20warrior%20goddess%20lion%20mount%20cosmic%20battle%20ancient%20Indian%20Devi%20painting%20vibrant%20colors%20golden%20halo%20Shakta%20art",
+    topics:["Devi Mahatmyam","Durga","Cosmic Cycles","Dharma"],
+    desc:"The Markandeya Purana is immortalized by its inclusion of the Devi Mahatmyam (Durga Saptashati) — 700 verses glorifying the Goddess Durga's victories over demonic forces. Recited throughout Navaratri across India, this Purana also elaborates on cosmology, the eternal cycles of time, and the immortal sage Markandeya's vision.",
+    verse:"या देवी सर्वभूतेषु शक्तिरूपेण संस्थिता",
+    trans:"Salutations to the Goddess who resides in all beings in the form of cosmic power.",
+    themes:["Devi Mahatmyam","Navaratri","Shakti","Cosmic Cycles"]
+  },
+  {
+    id:8, num:"08", name:"Agni Purana", sanskrit:"अग्नि पुराण",
+    deity:"Agni", cat:"brahma", shlokas:"15,400", adhyayas:"383", type:"Tamasic",
+    img:"Agni%20fire%20god%20divine%20flames%20sacred%20Vedic%20ritual%20yagna%20fire%20altar%20ancient%20Hindu%20deity%20golden%20radiant%20ancient%20Indian%20painting%20spiritual%20fire%20ceremony%20Brahmin%20priest",
+    topics:["Ritual Science","Architecture","Medicine","Statecraft"],
+    desc:"The Agni Purana is an extraordinary encyclopedia of ancient Indian knowledge, narrated by the Fire God Agni to Sage Vasishtha. Its vast scope covers temple architecture and sculpture, the science of governance and warfare, medicine (Ayurveda), poetry and grammar, astrology, and yoga — making it the most encyclopedic of all Puranas.",
+    verse:"अग्निः सर्वस्य जगतो मुखमेव महात्मनः",
+    trans:"Fire is the mouth of the great soul that is this entire universe — through fire offerings reach the gods.",
+    themes:["Temple Architecture","Medicine","Governance","Ritual Science"]
+  },
+  {
+    id:9, num:"09", name:"Bhavishya Purana", sanskrit:"भविष्य पुराण",
+    deity:"Surya", cat:"brahma", shlokas:"14,500", adhyayas:"228", type:"Rajasic",
+    img:"Surya%20sun%20god%20golden%20chariot%20seven%20horses%20radiant%20divine%20light%20sunrise%20Hindu%20solar%20deity%20lotus%20hands%20ancient%20Indian%20painting%20Vedic%20cosmic%20glory%20golden%20rays",
+    topics:["Prophecies","Sun Worship","Festivals","Dharma"],
+    desc:"The Bhavishya Purana — 'Purana of the Future' — is unique for its prophecies about future ages and rulers. Dedicated to the Sun God Surya, it contains detailed prescriptions for solar worship, important festivals like Ekadashi and Shivaratri, stories connecting to the Mahabharata era, and prophetic descriptions of the Kali Yuga.",
+    verse:"सूर्यो भुवनस्य चक्षुरुत्तमं ज्योतिरुच्यते",
+    trans:"The Sun is the eye of the universe — called the supreme light that illuminates all existence.",
+    themes:["Solar Worship","Prophecies","Festivals","Ethics"]
+  },
+  {
+    id:10, num:"10", name:"Brahmavaivarta Purana", sanskrit:"ब्रह्मवैवर्त पुराण",
+    deity:"Krishna-Radha", cat:"vaishnava", shlokas:"18,000", adhyayas:"218", type:"Rajasic",
+    img:"Radha%20Krishna%20divine%20love%20Vrindavan%20Yamuna%20river%20moonlight%20romantic%20celestial%20ancient%20Indian%20painting%20Gopi%20Ras%20Leela%20dance%20golden%20blue%20devotional%20spiritual%20art",
+    topics:["Radha-Krishna","Divine Love","Creation","Shakti"],
+    desc:"The Brahmavaivarta Purana celebrates the eternal divine love of Radha and Krishna as the primordial creative force behind all existence. It presents Radha as Krishna's supreme Shakti and narrates the creation of the cosmos through their divine union. It also includes the glorious stories of Ganesha, Saraswati, and Lakshmi's births.",
+    verse:"राधा कृष्णस्य परमा शक्तिः प्रकृतिरुच्यते",
+    trans:"Radha is the supreme power of Krishna — she is the very nature of all existence.",
+    themes:["Radha-Krishna","Divine Love","Creation","Shakti Philosophy"]
+  },
+  {
+    id:11, num:"11", name:"Linga Purana", sanskrit:"लिंग पुराण",
+    deity:"Shiva", cat:"shaiva", shlokas:"11,000", adhyayas:"163", type:"Tamasic",
+    img:"Shiva%20Lingam%20glowing%20divine%20pillar%20light%20ancient%20stone%20temple%20sacred%20symbol%20flowers%20offerings%20incense%20smoke%20spiritual%20glow%20ancient%20Indian%20Shaiva%20painting%20divine%20light",
+    topics:["Shiva Lingam","Cosmic Pillar","Liberation","Jyotirlingas"],
+    desc:"The Linga Purana glorifies the cosmic Shiva Lingam — the infinite pillar of divine consciousness that pierced through heaven and earth when Brahma and Vishnu sought its beginning and end in vain. It narrates the story of the primordial Jyotirlinga, the nature of cosmic dissolution, and the ultimate truth that Shiva is pure awareness beyond creation.",
+    verse:"लिङ्गमव्यक्तमीशानं सर्वव्यापिनमव्ययम्",
+    trans:"The Linga is the unmanifest, all-pervading, imperishable symbol of the Supreme Lord.",
+    themes:["Linga Worship","Cosmic Consciousness","Liberation","Pralaya"]
+  },
+  {
+    id:12, num:"12", name:"Varaha Purana", sanskrit:"वराह पुराण",
+    deity:"Vishnu", cat:"vaishnava", shlokas:"24,000", adhyayas:"218", type:"Sattvic",
+    img:"Vishnu%20Varaha%20cosmic%20boar%20avatar%20lifting%20Earth%20goddess%20Bhudevi%20primordial%20ocean%20divine%20heroic%20form%20ancient%20Indian%20painting%20golden%20tusks%20divine%20light%20Vaishnava%20art",
+    topics:["Varaha Avatar","Earth","Salvation","Vishnu"],
+    desc:"The Varaha Purana narrates the magnificent story of Vishnu's third avatar — the cosmic boar Varaha who dove into the primordial ocean to rescue the Earth goddess Bhudevi from the demon Hiranyaksha. Narrated directly to Bhudevi by Varaha, this Purana emphasizes devotion to Vishnu and the power of sacred pilgrimage.",
+    verse:"वराहो भगवान् देवः पृथिवीं दंष्ट्रया धृताम्",
+    trans:"Lord Varaha, the divine being, held the entire Earth upon his sacred tusks.",
+    themes:["Varaha Avatar","Bhudevi","Bhakti","Sacred Pilgrimage"]
+  },
+  {
+    id:13, num:"13", name:"Skanda Purana", sanskrit:"स्कन्द पुराण",
+    deity:"Kartikeya", cat:"shaiva", shlokas:"81,101", adhyayas:"1,000+", type:"Tamasic",
+    img:"Kartikeya%20Murugan%20Skanda%20divine%20warrior%20peacock%20mount%20six%20faces%20Vel%20spear%20golden%20armor%20ancient%20South%20Indian%20Shaiva%20painting%20sacred%20divine%20light%20spiritual%20glow",
+    topics:["Sacred Geography","Kashi","Temples","Kartikeya"],
+    desc:"The Skanda Purana is the largest of all eighteen Puranas at over 81,000 verses. Named after Skanda (Kartikeya) — the warrior son of Shiva — it is an immense collection of sacred geography, temple histories, and pilgrimage narratives covering all major sacred sites: Kashi, Puri, Rameswaram, Dwarka, and the Himalayan shrines.",
+    verse:"कार्तिकेयं महाबाहुं देवसेनापतिं प्रभुम्",
+    trans:"Kartikeya, the mighty-armed, the divine commander of heavenly armies — the supreme lord.",
+    themes:["Sacred Geography","Kashi","Kartikeya","Temple Traditions"]
+  },
+  {
+    id:14, num:"14", name:"Vamana Purana", sanskrit:"वामन पुराण",
+    deity:"Vishnu", cat:"vaishnava", shlokas:"10,000", adhyayas:"95", type:"Sattvic",
+    img:"Vamana%20dwarf%20Brahmin%20Vishnu%20avatar%20Trivikrama%20cosmic%20giant%20three%20steps%20universe%20King%20Bali%20ancient%20Indian%20Vaishnava%20miniature%20painting%20divine%20transformation%20spiritual",
+    topics:["Vamana Avatar","King Bali","Three Steps","Cosmic Order"],
+    desc:"The Vamana Purana narrates the captivating story of Vishnu's fifth avatar — the humble dwarf Brahmin Vamana who appeared before the generous demon king Bali. Requesting just three steps of land, Vamana expanded into the cosmic giant Trivikrama and covered the entire universe in three cosmic strides, restoring divine order.",
+    verse:"वामनो विष्णुरेव हि त्रिलोकक्रमणं व्यधात्",
+    trans:"Vamana is Vishnu himself — who measured the three worlds in three cosmic strides.",
+    themes:["Vamana Avatar","King Bali","Three Strides","Cosmic Order"]
+  },
+  {
+    id:15, num:"15", name:"Kurma Purana", sanskrit:"कूर्म पुराण",
+    deity:"Vishnu", cat:"vaishnava", shlokas:"17,000", adhyayas:"95", type:"Sattvic",
+    img:"Vishnu%20Kurma%20divine%20tortoise%20avatar%20cosmic%20ocean%20churning%20Mandara%20mountain%20Samudra%20Manthan%20amrita%20nectar%20gods%20demons%20ancient%20Indian%20painting%20Vaishnava%20mythological%20art",
+    topics:["Kurma Avatar","Samudra Manthan","Ishvara Gita","Yugas"],
+    desc:"The Kurma Purana narrates Vishnu's second avatar as the divine tortoise who supported Mount Mandara on his back during the great churning of the cosmic ocean (Samudra Manthan), from which emerged the nectar of immortality. It contains the profound Ishvara Gita — Shiva's divine song of philosophical knowledge.",
+    verse:"कूर्मरूपो हरिः पृष्ठं मन्दराद्रेः समाधत्त",
+    trans:"Hari in the form of a tortoise supported the back of Mount Mandara upon his divine shell.",
+    themes:["Kurma Avatar","Samudra Manthan","Ishvara Gita","Four Yugas"]
+  },
+  {
+    id:16, num:"16", name:"Matsya Purana", sanskrit:"मत्स्य पुराण",
+    deity:"Vishnu", cat:"vaishnava", shlokas:"14,000", adhyayas:"291", type:"Sattvic",
+    img:"Vishnu%20Matsya%20giant%20golden%20fish%20avatar%20cosmic%20flood%20Manu%20boat%20Vedas%20rescue%20ancient%20Indian%20painting%20divine%20ocean%20mythological%20Vaishnava%20art%20spiritual%20golden%20light",
+    topics:["Matsya Avatar","Great Flood","Manu","Temple Science"],
+    desc:"The Matsya Purana opens with Vishnu's first avatar — the great golden fish Matsya — who warned King Manu of the coming cosmic flood and guided his boat to safety, preserving the Vedas and all forms of life. This Purana also contains valuable knowledge on temple construction, sacred sculpture, cosmology, and the science of omens.",
+    verse:"मत्स्यरूपी हरिः प्राह मनुं वैवस्वतं प्रभुम्",
+    trans:"Hari in the form of a fish spoke to the lord Manu, son of the Sun — and saved all life.",
+    themes:["Matsya Avatar","Great Flood","Manu Smriti","Temple Science"]
+  },
+  {
+    id:17, num:"17", name:"Garuda Purana", sanskrit:"गरुड पुराण",
+    deity:"Vishnu", cat:"vaishnava", shlokas:"19,000", adhyayas:"279", type:"Sattvic",
+    img:"Garuda%20divine%20eagle%20vehicle%20Vishnu%20mount%20golden%20wings%20majestic%20celestial%20flight%20ancient%20Hindu%20deity%20Indian%20miniature%20painting%20divine%20light%20cosmic%20sacred%20spiritual",
+    topics:["Death & Afterlife","Karma","Moksha","Medicine"],
+    desc:"The Garuda Purana, narrated by Vishnu to his divine eagle vehicle Garuda, is the revered text of death, karma, and liberation. Traditionally recited in Hindu households during funeral rites, it vividly describes the soul's journey after death, the workings of karma across lifetimes, the nature of various realms, and the path to final liberation.",
+    verse:"गरुड उवाच — किं कर्म मानवाः कुर्युर्मृत्योर्जित्वा भयं महत्",
+    trans:"Garuda asked: What must humans do to conquer the great and terrible fear of death?",
+    themes:["Death & Afterlife","Karma","Moksha","Ayurveda"]
+  },
+  {
+    id:18, num:"18", name:"Brahmanda Purana", sanskrit:"ब्रह्माण्ड पुराण",
+    deity:"Brahma", cat:"brahma", shlokas:"12,000", adhyayas:"125", type:"Rajasic",
+    img:"cosmic%20golden%20egg%20Brahmanda%20universe%20creation%20divine%20light%20stars%20galaxies%20ancient%20Indian%20Vedic%20cosmology%20painting%20Brahma%20creator%20sacred%20lotus%20spiritual%20cosmic%20art",
+    topics:["Cosmic Egg","Lalita Sahasranama","Genealogies","Cosmology"],
+    desc:"The Brahmanda Purana describes the 'Cosmic Egg' (Brahmanda) — the primordial golden egg from which the entire universe emerged at the dawn of creation. It contains the celebrated Lalita Sahasranama, the thousand divine names of Goddess Lalita Tripura Sundari, which stands as the supreme scripture of Shakta devotion alongside its cosmic genealogies.",
+    verse:"ब्रह्माण्डमुदभूत् पूर्वं रजोगुणसमुद्भवम्",
+    trans:"The cosmic egg first emerged from the quality of Rajas — the primordial creative energy of existence.",
+    themes:["Cosmic Egg","Lalita Sahasranama","Creation","Sacred Genealogies"]
+  }
+];
+
+// ── RENDER CARDS ───────────────────────────────────────────────
+function renderCards(filter){
+  const grid = document.getElementById('puranaGrid');
+  grid.innerHTML = '';
+  PURANAS.forEach((p,i)=>{
+    if(filter && filter!=='all' && p.cat!==filter) return;
+    const imgUrl = `https://image.pollinations.ai/prompt/${p.img}?width=400&height=280&nologo=true`;
+    const card = document.createElement('div');
+    card.className='pc reveal';
+    card.style.transitionDelay = (i%4)*.08+'s';
+    card.setAttribute('data-cat', p.cat);
+    card.innerHTML=`
+      <div class="pc-img">
+        <div class="pc-shimmer" id="shim${p.id}"></div>
+        <img src="${imgUrl}" alt="${p.name}" loading="lazy" onload="document.getElementById('shim${p.id}').style.display='none'" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22><rect fill=%22%230d0920%22 width=%22400%22 height=%22280%22/><text x=%22200%22 y=%22140%22 text-anchor=%22middle%22 fill=%22%23c9940e%22 font-size=%2248%22>ॐ</text></svg>';document.getElementById('shim${p.id}').style.display='none'">
+        <div class="pc-overlay"></div>
+        <span class="pc-badge">${p.deity}</span>
+        <span class="pc-num">${p.num}</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-skt">${p.sanskrit}</div>
+        <div class="pc-title">${p.name}</div>
+        <div class="pc-desc">${p.desc}</div>
+        <div class="pc-foot">
+          <div class="pc-shlokas"><b>${p.shlokas}</b> Shlokas</div>
+          <div class="pc-arr"><i class="fas fa-arrow-right"></i></div>
+        </div>
+      </div>`;
+    card.addEventListener('click',()=>openModal(p.id));
+    grid.appendChild(card);
+  });
+  // re-observe
+  setTimeout(observeReveal,50);
+}
+
+// ── FILTER ────────────────────────────────────────────────────
+document.querySelectorAll('.fb').forEach(btn=>{
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.fb').forEach(b=>b.classList.remove('active'));
+    this.classList.add('active');
+    renderCards(this.dataset.filter);
+  });
+});
+
+function filterAndScroll(cat){
+  document.querySelectorAll('.fb').forEach(b=>b.classList.remove('active'));
+  const btn = document.querySelector(`.fb[data-filter="${cat}"]`);
+  if(btn) btn.classList.add('active');
+  renderCards(cat);
+  document.getElementById('puranas').scrollIntoView({behavior:'smooth'});
+}
+
+// ── MODAL ─────────────────────────────────────────────────────
+function openModal(id){
+  const p = PURANAS.find(x=>x.id===id);
+  if(!p) return;
+  const imgUrl = `https://image.pollinations.ai/prompt/${p.img}?width=780&height=320&nologo=true`;
+  document.getElementById('modalImg').src = imgUrl;
+  document.getElementById('modalImg').alt = p.name;
+  document.getElementById('modalTag').textContent = `✦ ${p.type} · ${p.cat.charAt(0).toUpperCase()+p.cat.slice(1)} Tradition ✦`;
+  document.getElementById('modalTitle').textContent = p.name;
+  document.getElementById('modalSkt').textContent = p.sanskrit;
+  document.getElementById('modalStats').innerHTML = `
+    <div class="ms"><div class="ms-v">${p.shlokas}</div><div class="ms-k">Shlokas</div></div>
+    <div class="ms"><div class="ms-v">${p.adhyayas}</div><div class="ms-k">Adhyayas</div></div>
+    <div class="ms"><div class="ms-v">${p.type}</div><div class="ms-k">Guna</div></div>`;
+  document.getElementById('modalDesc').textContent = p.desc;
+  document.getElementById('modalThemes').innerHTML = p.themes.map(t=>`<span class="tt">${t}</span>`).join('');
+  document.getElementById('modalVerse').textContent = p.verse;
+  document.getElementById('modalTrans').textContent = '"' + p.trans + '"';
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeModal(e){
+  if(e && e.target!==document.getElementById('modal')) return;
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function closeModalBtn(){
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape') closeModalBtn();
+});
+
+// ── PARTICLES ─────────────────────────────────────────────────
+(function(){
+  const c = document.getElementById('particles');
+  for(let i=0;i<22;i++){
+    const p=document.createElement('div');
+    p.className='p';
+    p.style.cssText=`left:${Math.random()*100}%;--d:${6+Math.random()*10}s;--dl:${Math.random()*8}s`;
+    c.appendChild(p);
+  }
+})();
+
+// ── NAV SCROLL ────────────────────────────────────────────────
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>40);
+  observeReveal();
+});
+
+// ── REVEAL OBSERVER ───────────────────────────────────────────
+function observeReveal(){
+  document.querySelectorAll('.reveal:not(.on)').forEach(el=>{
+    const r=el.getBoundingClientRect();
+    if(r.top < window.innerHeight - 60) el.classList.add('on');
+  });
+}
+window.addEventListener('scroll', observeReveal);
+observeReveal();
+
+// ── COUNTER ANIMATION ─────────────────────────────────────────
+function animateCounters(){
+  document.querySelectorAll('[data-target]').forEach(el=>{
+    const target = +el.dataset.target;
+    let cur = 0;
+    const step = target/60;
+    const t = setInterval(()=>{
+      cur = Math.min(cur+step, target);
+      el.textContent = Math.floor(cur) + (target===400 ? 'K+' : target===5 ? ',000+' : '');
+      if(cur >= target) clearInterval(t);
+    }, 25);
+  });
+}
+
+// trigger counter when hero comes into view
+const heroObs = new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting){ animateCounters(); heroObs.disconnect(); }
+},{threshold:.3});
+heroObs.observe(document.getElementById('hero'));
+
+// ── MOBILE MENU ───────────────────────────────────────────────
+document.getElementById('mobBtn').addEventListener('click',()=>{
+  document.getElementById('mobMenu').classList.toggle('open');
+});
+function closeMob(){ document.getElementById('mobMenu').classList.remove('open'); }
+
+// ── INITIAL RENDER ────────────────────────────────────────────
+renderCards('all');
+
+// ── YOUTUBE MUSIC PLAYER ──────────────────────────────────────
+var ytPlayer, ytReady = false, ytPlaying = false, ytMuted = true;
+
+// Load YouTube IFrame API
+(function(){
+  var s = document.createElement('script');
+  s.src = 'https://www.youtube.com/iframe_api';
+  document.head.appendChild(s);
+})();
+
+function onYouTubeIframeAPIReady(){
+  ytPlayer = new YT.Player('ytPlayer',{
+    videoId:'GNGFbVnI5o0',
+    playerVars:{
+      autoplay:1, mute:1, controls:0,
+      loop:1, playlist:'GNGFbVnI5o0',
+      playsinline:1, rel:0, disablekb:1,
+      enablejsapi:1
+    },
+    events:{
+      onReady: function(e){
+        ytReady = true;
+        e.target.setVolume(80);
+        e.target.playVideo();
+        // Auto-unmute on first user interaction
+        var autoUnmute = function(){
+          if(ytReady && ytMuted){
+            e.target.unMute();
+            ytMuted = false;
+            setMusicUI(true);
+          }
+          document.removeEventListener('click', autoUnmute);
+          document.removeEventListener('scroll', autoUnmute);
+          document.removeEventListener('keydown', autoUnmute);
+        };
+        document.addEventListener('click', autoUnmute, {once:true});
+        document.addEventListener('scroll', autoUnmute, {once:true});
+        document.addEventListener('keydown', autoUnmute, {once:true});
+      },
+      onStateChange: function(e){
+        ytPlaying = (e.data === YT.PlayerState.PLAYING);
+        if(ytPlaying && !ytMuted) setMusicUI(true);
+      },
+      onError: function(){
+        document.getElementById('mbLabel').textContent = 'Audio unavailable';
+      }
+    }
+  });
+}
+
+function toggleMusic(){
+  if(!ytReady) return;
+  if(ytMuted){
+    ytPlayer.unMute();
+    ytPlayer.setVolume(80);
+    ytMuted = false;
+    if(!ytPlaying) ytPlayer.playVideo();
+    setMusicUI(true);
+  } else {
+    ytPlayer.mute();
+    ytMuted = true;
+    setMusicUI(false);
+  }
+}
+
+function setMusicUI(playing){
+  var pulse = document.getElementById('mbPulse');
+  var icon  = document.getElementById('mbIcon');
+  var label = document.getElementById('mbLabel');
+  var btn   = document.getElementById('mbBtn');
+  if(playing){
+    pulse.classList.remove('paused');
+    icon.className  = 'fas fa-volume-high';
+    label.textContent = 'Playing';
+    btn.classList.remove('muted');
+  } else {
+    pulse.classList.add('paused');
+    icon.className  = 'fas fa-volume-xmark';
+    label.textContent = 'Click to Play';
+    btn.classList.add('muted');
+  }
+}
+</script>
+</body>
+</html>
